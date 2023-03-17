@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@200;400;500;600&display=swap');
+
+*, *::after, *::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Pacifico', cursive;
+}
+
+:root{
+    --black: #111111;
+    --black-2: #393939;
+    --tile: 80px;
+    --mark: calc(var(--tile) * .7);
+    --gradi: linear-gradient(45deg, #355575, #ff958f);
+    --ff-2:'Poppins', sans-serif;
+}
+body{
+    background-color: var(--black);
+    box-sizing: border-box;
+}
+
+
+.title{
+    color: #fff;
+    text-align: center;
+    margin: 20px 5px 40px 5px;
+    font-size: 50px;
+    background: var(--gradi);
+    background-clip: text;
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent;
+    z-index: 1;
+}
+.game{
+    width: 100%;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    grid-template-columns: repeat(3, auto);
+}
+
+
+
+.tile{
+    background-color: var(--black-2);
+    width: var(--tile);
+    height: var(--tile);
+    margin: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.tile.x::after,
+.tile.x::before,
+.tile.o::after{
+    background-color: #fff;
+}
+.tile.x::after,
+.tile.x::before,
+.game.x .tile:not(.x):not(.o):hover::after, 
+.game.x .tile:not(.x):not(.o):hover::before{
+    content: "";
+    position: absolute;
+    height: var(--mark);
+    width: calc(var(--mark) * .15);
+    border-radius: 1000px;
+}
+
+.game.x .tile:not(.x):not(.o):hover::after, 
+.game.x .tile:not(.x):not(.o):hover::before,
+.game.o .tile:not(.x):not(.o):hover::after, 
+.game.o .tile:not(.x):not(.o):hover::before{
+    background-color: #9a9a9a;
+}
+.tile.x::after,
+.game.x .tile:not(.x):not(.o):hover::after{
+    transform: rotate(45deg);
+}
+.tile.x::before,
+.game.x .tile:not(.x):not(.o):hover::before{
+    transform: rotate(-45deg);
+}
+
+.tile.o::after,
+.tile.o::before,
+.game.o .tile:not(.x):not(.o):hover::after, 
+.game.o .tile:not(.x):not(.o):hover::before{
+    content: "";
+    position: absolute;
+    height: var(--mark);
+    width: var(--mark);
+    border-radius: 50%;
+}
+.tile.o::before,
+.game.o .tile:not(.x):not(.o):hover::before{
+    height: calc(var(--mark) * .7);
+    width: calc(var(--mark) * .7);
+    background-color: var(--black-2);
+    z-index: 1;
+}
+
+.tile.x, .tile.o{
+    cursor: not-allowed;
+}
+
+
+/* ----msg----- */
+.msg{
+    background: #000000bd;
+    display: flex;
+
+    visibility: hidden;
+    opacity: 0;
+    z-index: -1000;
+
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    color: #fff;
+    transition: .3s;
+}
+.show{
+    visibility: visible;
+    opacity: 1;
+    z-index: 1000;
+}
+.msg-text{
+    font-size: 40px;
+    margin-bottom: 30px;
+}
+
+.restart{
+    background: var(--gradi);
+    color: #fff;
+    padding: 15px 30px;
+    font-size: 19px;
+    letter-spacing: .5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-family: var(--ff-2);
+    border-radius: 1000px;
+    transition:.3s;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+.restart:hover{
+    background: #fff;
+    color: var(--black);
+    letter-spacing: 1px;
+}
+
+
+.display-turn{
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 150px;
+    border-radius: 10px;
+    margin-inline:auto;
+    margin: 40px auto 20px auto;
+}
+.display-turn span{
+    font-size: 30px;
+    font-weight: bold;
+}
+.display-turn div:first-child span{
+    font-size: 40px;
+}
+.active-turn{
+    background: var(--gradi);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color: transparent;
+}
+footer{
+    background-color: #000000;
+    padding: 10px 30px;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+footer p, a{
+    font-family: var(--ff-2);
+    color: #c9c9c9;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
+}
+
+footer a{
+    font-weight: 600;
+    background: var(--gradi);
+    background-clip: text;
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent;
+}
